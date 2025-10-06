@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  /* Color tokens */
+  --color-primary: #0d6efd;
+  --color-background: #f8f9fa;
+  --color-text: #212529;
+  --color-headings: #000000;
+
+  /* Font families */
+  --font-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-serif: "Gentium Book Plus", Georgia, serif;
+  --font-mono: "Geist Mono", "IBM Plex Mono", monospace;
+}

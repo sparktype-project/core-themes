@@ -1,0 +1,15 @@
+{
+  "name": "sparkdocs-theme",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "copy": "node scripts/copy-to-sparktype.js"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0-alpha.25",
+    "@tailwindcss/vite": "^4.0.0-alpha.25",
+    "vite": "^5.4.11"
+  }
+}
