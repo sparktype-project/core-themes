@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   /* Color tokens */
@@ -11,4 +12,41 @@
   --font-sans: Inter, system-ui, -apple-system, sans-serif;
   --font-serif: "Gentium Book Plus", Georgia, serif;
   --font-mono: "Geist Mono", "IBM Plex Mono", monospace;
+
+  
+}
+
+html {
+  font-size: 18px;
+}
+
+@layer base {
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  a:link {
+    color: var(--color-primary);
+  }
+
+  .bg-background {
+    background-color: var(--color-background);
+  }
+
+  .font-headings,
+  h1, h2, h3, h4 {
+    font-family: var(--font-headings);
+    font-weight: bold;
+    color: var(--color-headings);
+  }
+  
 }

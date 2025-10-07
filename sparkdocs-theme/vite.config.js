@@ -2,10 +2,17 @@ import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [tailwindcss()],
+  plugins: [
+    tailwindcss({
+      // Tell Tailwind which files to scan for class names
+      content: [
+        './theme/**/*.hbs'
+      ]
+    })
+  ],
   build: {
-    outDir: 'theme',
-    emptyOutDir: false,
+    outDir: 'dist',
+    emptyOutDir: true,
     rollupOptions: {
       input: './src/styles.css',
       output: {

@@ -1,24 +1,34 @@
 import fs from 'fs/promises'
 import path from 'path'
 
-const SPARKTYPE_PATH = '../../../sparktype/public/themes/sparksite'
+const SPARKTYPE_PATH = '/Users/mattkevan/Sites/sparktype/public/themes/sparksite'
 
 async function copyTheme() {
-  const themeDir = './theme'
+  const srcDir = './src'
+  const distDir = './dist'
 
   try {
-    console.log('📦 Copying theme to Sparktype...')
+    console.log('📦 Building theme bundle...')
 
-    // Copy entire theme directory
-    await fs.cp(themeDir, SPARKTYPE_PATH, {
+    // 1. Copy all source files except styles.css (which is built by Vite)
+    await fs.cp(srcDir, distDir, {
       recursive: true,
+      force: true,
       filter: (src) => {
-        // Exclude node_modules and any other dev files
-        const shouldExclude = src.includes('node_modules') ||
-                             src.includes('.git') ||
-                             src.endsWith('.map')
-        return !shouldExclude
+        // Skip src/styles.css - it's built by Vite to dist/styles.css
+        const relativePath = path.relative(process.cwd(), src)
+        return relativePath !== 'src/styles.css' && !relativePath.endsWith('/styles.css')
       }
+    })
+    console.log('✓ Copied templates to dist')
+
+    // 2. Built CSS is already in dist/styles.css from Vite
+    console.log('✓ CSS built by Vite in dist/styles.css')
+
+    // 3. Copy complete dist to Sparktype
+    await fs.cp(distDir, SPARKTYPE_PATH, {
+      recursive: true,
+      force: true
     })
 
     console.log('✅ Theme copied to Sparktype successfully!')

@@ -1,15 +1,23 @@
 import fs from 'fs/promises'
 import path from 'path'
 
-const SPARKTYPE_PATH = '../../../sparktype/public/themes/sparkdocs'
+const SPARKTYPE_PATH = '/Users/mattkevan/Sites/sparktype/public/themes/sparkdocs'
 
 async function copyTheme() {
   const themeDir = './theme'
+  const distDir = './dist'
 
   try {
     console.log('📦 Copying theme to Sparktype...')
 
-    // Copy entire theme directory
+    // First, copy built CSS from dist to theme directory
+    await fs.copyFile(
+      path.join(distDir, 'styles.css'),
+      path.join(themeDir, 'styles.css')
+    )
+    console.log('✓ Copied built CSS to theme directory')
+
+    // Then copy entire theme directory to Sparktype
     await fs.cp(themeDir, SPARKTYPE_PATH, {
       recursive: true,
       filter: (src) => {

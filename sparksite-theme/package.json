@@ -5,11 +5,16 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",
-    "copy": "node scripts/copy-to-sparktype.js"
+    "build:copy": "vite build && node scripts/copy-to-sparktype.js",
+    "copy": "node scripts/copy-to-sparktype.js",
+    "watch": "chokidar \"src/**/*\" -c \"npm run build:copy\""
   },
   "devDependencies": {
-    "tailwindcss": "^4.0.0-alpha.25",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.0.0-alpha.25",
+    "chokidar": "^4.0.3",
+    "chokidar-cli": "^3.0.0",
+    "tailwindcss": "^4.0.0-alpha.25",
     "vite": "^5.4.11"
   }
 }
