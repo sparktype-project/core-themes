@@ -2,35 +2,34 @@
   Partial for a single blog post card using SparkType Design System utilities.
   'this' refers to one item from the `collectionItems` array.
 }}
-<article class="border-b border-gray-200 pb-6">
+<article class="border-b">
     {{#if this.frontmatter.featured_image}}
-        <a href="{{this.url}}" class="block mb-6">
+        <a href="{{this.url}}" class="block mb-4">
             {{{image
                 fieldname="featured_image"
-                preset="thumbnail"
                 alt=this.frontmatter.title
                 class="w-full"
             }}}
         </a>
     {{/if}}
 
-    <div class="">
-        <h2 class="text-4xl mt-0 mb-2 leading-tight">
+    <div class="flex flex-col h-full pb-6 border-b">
+        <h2 class="mt-0 mb-2 leading-tight">
             <a
                 href="{{this.url}}"
-                class="hover:underline"
+                class=""
             >
                 {{this.frontmatter.title}}
             </a>
         </h2>
 
-        <p class="text-sm text-gray-500 mb-3 font-headings">
+        <p class="text-sm text-muted mb-3 font-medium">
             {{formatDate this.frontmatter.date}}
         </p>
 
-        {{#if this.frontmatter.description}}
-            <p class="text-text mt-0 mb-4 text-lg flex-1 font-headings">
-                {{this.frontmatter.description}}
+        {{#if this.frontmatter.excerpt}}
+            <p class="text-text mb-4 leading-relaxed flex-1">
+                {{this.frontmatter.excerpt}}
             </p>
         {{/if}}
 

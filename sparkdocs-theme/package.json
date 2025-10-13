@@ -1,15 +1,15 @@
 {
   "name": "sparkdocs-theme",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "chokidar \"src/**/*\" -c \"npm run build:copy\"",
     "build": "vite build",
     "build:copy": "vite build && node scripts/copy-to-sparktype.js",
-    "copy": "node scripts/copy-to-sparktype.js",
-    "watch": "chokidar \"dist/styles.css\" -c \"npm run copy\""
+    "copy": "node scripts/copy-to-sparktype.js"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.0.0-alpha.25",
     "chokidar": "^4.0.3",
     "chokidar-cli": "^3.0.0",

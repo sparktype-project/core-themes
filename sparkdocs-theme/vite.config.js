@@ -4,9 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [
     tailwindcss({
-      // Tell Tailwind which files to scan for class names
+      // Scan source templates for Tailwind classes
       content: [
-        './theme/**/*.hbs'
+        './src/**/*.hbs'
       ]
     })
   ],

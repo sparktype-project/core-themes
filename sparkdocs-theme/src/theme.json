@@ -1,0 +1,200 @@
+{
+  "name": "Sparkdocs",
+  "version": "2.0.0",
+  "files": [
+    { "path": "theme.json", "type": "manifest" },
+    { "path": "base.hbs", "type": "base" },
+    { "path": "styles.css", "type": "stylesheet" },
+    { "path": "partials/head.hbs", "type": "partial", "name": "head" },
+    { "path": "partials/header.hbs", "type": "partial", "name": "header" },
+    { "path": "partials/sidebar.hbs", "type": "partial", "name": "sidebar" },
+    { "path": "partials/footer.hbs", "type": "partial", "name": "footer" }
+  ],
+  "stylesheets": [
+    { "path": "styles.css", "type": "main" }
+  ],
+  "layouts": [
+    {
+      "id": "base",
+      "name": "Base Layout",
+      "type": "base",
+      "path": "base",
+      "description": "Root layout providing HTML structure"
+    },
+    {
+      "id": "page",
+      "name": "Standard Page",
+      "type": "layout",
+      "path": "layouts/page",
+      "layoutType": "single",
+      "description": "Clean single-column layout for standard pages"
+    },
+    {
+      "id": "docs-page",
+      "name": "Documentation Page",
+      "type": "layout",
+      "path": "layouts/docs-page",
+      "layoutType": "single",
+      "description": "Documentation page with optional table of contents"
+    },
+    {
+      "id": "blog-post",
+      "name": "Blog Post",
+      "type": "layout",
+      "path": "layouts/blog-post",
+      "layoutType": "single",
+      "description": "Layout for individual blog post articles"
+    },
+    {
+      "id": "blog-listing",
+      "name": "Blog Listing",
+      "type": "layout",
+      "path": "layouts/blog-listing",
+      "layoutType": "collection",
+      "description": "Displays a list of blog posts"
+    },
+    {
+      "id": "hero-page",
+      "name": "Hero Page",
+      "type": "layout",
+      "path": "layouts/hero-page",
+      "layoutType": "single",
+      "description": "Landing page with bold title and call to action"
+    }
+  ],
+  "appearanceSchema": {
+    "description": "Customise the colors, fonts and layout of your site.",
+    "type": "object",
+    "properties": {
+      "--color-background": {
+        "type": "string",
+        "title": "Page background",
+        "format": "color",
+        "default": "#ffffff"
+      },
+      "--color-text": {
+        "type": "string",
+        "title": "Body text",
+        "format": "color",
+        "default": "#1f2937"
+      },
+      "--color-heading": {
+        "type": "string",
+        "title": "Headings",
+        "format": "color",
+        "default": "#111827"
+      },
+      "--color-primary": {
+        "type": "string",
+        "title": "Primary accent",
+        "format": "color",
+        "default": "#3b82f6"
+      },
+      "--color-border": {
+        "type": "string",
+        "title": "Borders",
+        "format": "color",
+        "default": "#e5e7eb"
+      },
+      "--color-sidebar": {
+        "type": "string",
+        "title": "Sidebar background",
+        "format": "color",
+        "default": "#ffffff"
+      },
+      "--font-sans": {
+        "type": "string",
+        "title": "Headings font",
+        "description": "Choose the font for all headings.",
+        "enum": [
+          "Geist, system-ui, sans-serif",
+          "\"Geist Mono\", monospace",
+          "\"Gentium Book Plus\", Georgia, serif",
+          "\"IBM Plex Mono\", monospace",
+          "\"IBM Plex Sans\", sans-serif",
+          "\"IBM Plex Serif\", serif",
+          "\"Instrument Serif\", serif",
+          "Inter, system-ui, sans-serif"
+        ],
+        "enumNames": [
+          "Geist (Sans)",
+          "Geist Mono (Monospace)",
+          "Gentium Book Plus (Serif)",
+          "IBM Plex Mono (Monospace)",
+          "IBM Plex Sans (Sans)",
+          "IBM Plex Serif (Serif)",
+          "Instrument Serif (Serif)",
+          "Inter (Sans)"
+        ],
+        "default": "Inter, system-ui, sans-serif"
+      },
+      "--font-serif": {
+        "type": "string",
+        "title": "Body text font",
+        "description": "Choose the font for all paragraphs and lists.",
+        "enum": [
+          "Geist, system-ui, sans-serif",
+          "\"Geist Mono\", monospace",
+          "\"Gentium Book Plus\", Georgia, serif",
+          "\"IBM Plex Mono\", monospace",
+          "\"IBM Plex Sans\", sans-serif",
+          "\"IBM Plex Serif\", serif",
+          "\"Instrument Serif\", serif",
+          "Inter, system-ui, sans-serif"
+        ],
+        "enumNames": [
+          "Geist (Sans)",
+          "Geist Mono (Monospace)",
+          "Gentium Book Plus (Serif)",
+          "IBM Plex Mono (Monospace)",
+          "IBM Plex Sans (Sans)",
+          "IBM Plex Serif (Serif)",
+          "Instrument Serif (Serif)",
+          "Inter (Sans)"
+        ],
+        "default": "\"IBM Plex Sans\", sans-serif"
+      },
+      "--sidebar-width": {
+        "type": "string",
+        "title": "Sidebar width",
+        "description": "Choose the width of the navigation sidebar.",
+        "enum": ["240px", "280px", "320px"],
+        "enumNames": ["Narrow (240px)", "Medium (280px)", "Wide (320px)"],
+        "default": "280px"
+      }
+    }
+  },
+  "themeDataSchema": {
+    "type": "object",
+    "properties": {
+      "header_content": {
+        "type": "string",
+        "title": "Header content",
+        "description": "Optional HTML content for the header area",
+        "format": "textarea",
+        "default": ""
+      },
+      "github_link": {
+        "type": "string",
+        "title": "Github link",
+        "description": "Link to a Github repository.",
+        "format": "textfield",
+        "default": ""
+      },
+      "discord_link": {
+        "type": "string",
+        "title": "Discord link",
+        "description": "Link do a Discord server.",
+        "format": "textfield",
+        "default": ""
+      },
+      "footer_content": {
+        "type": "string",
+        "title": "Footer content",
+        "description": "Optional HTML content for the footer",
+        "format": "textarea",
+        "default": ""
+      }
+    }
+  }
+}
