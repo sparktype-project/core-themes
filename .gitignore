@@ -1,2 +1,3 @@
 .DS_Store
-node_modulesdist/
+node_modules
+dist/
