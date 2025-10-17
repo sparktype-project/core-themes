@@ -185,7 +185,28 @@
       "discord_link": {
         "type": "string",
         "title": "Discord link",
-        "description": "Link do a Discord server.",
+        "description": "Link to a Discord server.",
+        "format": "textfield",
+        "default": ""
+      },
+      "xtwitter_link": {
+        "type": "string",
+        "title": "X/Twitter link",
+        "description": "Link to a X/Twitter profile.",
+        "format": "textfield",
+        "default": ""
+      },
+      "bluesky_link": {
+        "type": "string",
+        "title": "Bluesky link",
+        "description": "Link to a Bluesky profile.",
+        "format": "textfield",
+        "default": ""
+      },
+       "web_link": {
+        "type": "string",
+        "title": "Web link",
+        "description": "Link to a Web address.",
         "format": "textfield",
         "default": ""
       },
