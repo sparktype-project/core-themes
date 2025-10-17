@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.join(__dirname, '..')
-const SPARKTYPE_PATH = '/Users/mattkevan/Sites/sparktype/public/themes/sparksite'
+const SPARKTYPE_PATH = '/Users/matt/Sites/sparktype/public/themes/sparksite'
 
 let copying = false
 let pendingCopy = false

@@ -26,7 +26,7 @@
       "name": "Standard Page",
       "type": "layout",
       "path": "layouts/page",
-      "layoutType": "single",
+      "layoutType": "page",
       "description": "Clean single-column layout for standard pages"
     },
     {
@@ -34,7 +34,7 @@
       "name": "Documentation Page",
       "type": "layout",
       "path": "layouts/docs-page",
-      "layoutType": "single",
+      "layoutType": "page",
       "description": "Documentation page with optional table of contents"
     },
     {
@@ -42,7 +42,7 @@
       "name": "Blog Post",
       "type": "layout",
       "path": "layouts/blog-post",
-      "layoutType": "single",
+      "layoutType": "item",
       "description": "Layout for individual blog post articles"
     },
     {
@@ -50,7 +50,7 @@
       "name": "Blog Listing",
       "type": "layout",
       "path": "layouts/blog-listing",
-      "layoutType": "collection",
+      "layoutType": "list",
       "description": "Displays a list of blog posts"
     },
     {
@@ -58,7 +58,7 @@
       "name": "Hero Page",
       "type": "layout",
       "path": "layouts/hero-page",
-      "layoutType": "single",
+      "layoutType": "page",
       "description": "Landing page with bold title and call to action"
     }
   ],

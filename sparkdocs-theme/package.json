@@ -2,12 +2,11 @@
   "name": "sparkdocs-theme",
   "version": "2.0.0",
   "type": "module",
-   "scripts": {
-    "dev": "vite build --watch",
+  "scripts": {
     "build": "vite build",
-    "build:copy": "vite build && node scripts/copy-to-sparktype.js",
     "copy": "node scripts/copy-to-sparktype.js",
-    "watch": "chokidar \"src/**/*\" -c \"npm run build:copy\""
+    "build:and:copy": "npm run build && npm run copy",
+    "dev": "chokidar \"src/**/*\" -c \"npm run build:and:copy\""
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
