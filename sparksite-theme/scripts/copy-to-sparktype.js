@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 
-const SPARKTYPE_PATH = '/Users/matt/Sites/sparktype/public/themes/sparksite'
+const SPARKTYPE_PATH = '/Users/mattkevan/Sites/sparktype/public/themes/sparksite'
 
 async function copyTheme() {
   const srcDir = './src'

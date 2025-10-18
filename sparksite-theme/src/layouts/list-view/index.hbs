@@ -22,9 +22,9 @@
                 {{! The partial name is namespaced to this layout: 'blog-listing/...' }}
                 {{! Use the selected displayType from layoutConfig, fallback to post-card }}
                 {{#if ../contentFile.frontmatter.layoutConfig.displayType}}
-                    {{> (concat "blog-listing/partials/" ../contentFile.frontmatter.layoutConfig.displayType) this}}
+                    {{> (concat "list-view/partials/" ../contentFile.frontmatter.layoutConfig.displayType) this}}
                 {{else}}
-                    {{> blog-listing/partials/post-card this}}
+                    {{> list-view/partials/card this}}
                 {{/if}}
             {{/each}}
         </div>
