@@ -11,19 +11,12 @@
   /* Font families */
   --font-sans: Inter, system-ui, -apple-system, sans-serif;
   --font-serif: "Gentium Book Plus", Georgia, serif;
-  --font-mono: "Geist Mono", "IBM Plex Mono", monospace;
-
-
-  
+  --font-mono: "Geist Mono", "IBM Plex Mono", monospace;  
 }
 
 html {
   font-size: 16px;
-  
-
 }
-
-
 
 @layer base {
 
@@ -56,4 +49,35 @@ body {
     color: var(--color-headings);
   }
   
+}
+
+@layer components {
+  .column-group {
+  @apply flex flex-col gap-4 mb-4;
+}
+
+.column {
+  @apply w-full;
+}
+.column h3 {
+  @apply !mt-0;
+}
+
+@media (min-width: 768px) {
+  .column-group {
+    @apply flex-row;
+  }
+
+  .column-2 {
+    @apply w-[calc(50%-0.5rem)];
+  }
+
+  .column-3 {
+    @apply w-[calc(33.333%-0.667rem)];
+  }
+
+  .column-4 {
+    @apply w-[calc(25%-0.75rem)];
+  }
+}
 }
