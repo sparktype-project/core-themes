@@ -5,8 +5,10 @@
   "scripts": {
     "build": "vite build",
     "copy": "node scripts/copy-to-sparktype.js",
-    "build:and:copy": "npm run build && npm run copy",
-    "dev": "chokidar \"src/**/*\" -c \"npm run build:and:copy\""
+    "build:copy": "npm run build && npm run copy",
+    "build:and:copy": "npm run build:copy",
+    "dev": "vite build --watch",
+    "watch": "node scripts/watch-and-copy.js"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",

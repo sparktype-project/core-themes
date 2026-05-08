@@ -10,6 +10,21 @@ sparktype-themes/
 └── sparkdocs-theme/     # Development project for sparkdocs theme
 ```
 
+For the copy scripts to work without manual editing, keep the repos as siblings:
+
+```text
+Sites/
+├── sparktype/
+└── sparktype-themes/
+```
+
+By default, each theme copies into the sibling repo at `../sparktype/public/themes/<theme-name>`.
+If your local layout differs, set `SPARKTYPE_ROOT` to the Sparktype repo path:
+
+```bash
+SPARKTYPE_ROOT=/absolute/path/to/sparktype npm run copy
+```
+
 Each theme project has this clean structure:
 ```
 sparksite-theme/
@@ -42,7 +57,7 @@ npm install
 ```bash
 npm run dev
 ```
-Watches `src/styles.css` and `src/theme/**/*.hbs`, rebuilds CSS to `dist/styles.css`
+Watches the theme build and rebuilds `dist/styles.css`
 
 **Option 2: Full watch (CSS + auto-copy)**
 ```bash
@@ -79,6 +94,7 @@ npm run copy
 - **Vite watches `src/`**: No infinite loops - Vite never watches its own output
 - **Simple git tracking**: Only `src/`, `scripts/`, and `package.json` are tracked
 - **Each theme is independent**: Separate dependencies and builds
+- **Sibling repo assumption**: `sparktype` should sit next to `sparktype-themes` unless `SPARKTYPE_ROOT` is set
 
 ## Tailwind 4 Features
 

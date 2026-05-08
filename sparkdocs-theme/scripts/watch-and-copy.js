@@ -1,110 +1,91 @@
-import chokidar from 'chokidar'
-import { spawn } from 'child_process'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import chokidar from 'chokidar';
+import { spawn } from 'child_process';
+import { copyThemeBundle, resolveThemeContext } from '../../scripts/theme-copy-utils.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const rootDir = path.join(__dirname, '..')
-const SPARKTYPE_PATH = '/Users/mattkevan/Sites/sparktype/public/themes/sparkdocs'
+const context = await resolveThemeContext(import.meta.url);
 
-let copying = false
-let pendingCopy = false
+let copying = false;
+let pendingCopy = false;
 
-async function copyTheme() {
+async function triggerCopy() {
   if (copying) {
-    pendingCopy = true
-    return
+    pendingCopy = true;
+    return;
   }
 
-  copying = true
-  pendingCopy = false
-
-  const { default: fs } = await import('fs/promises')
+  copying = true;
+  pendingCopy = false;
 
   try {
-    console.log('📦 Copying theme to Sparktype...')
-
-    await fs.cp(path.join(rootDir, 'theme'), SPARKTYPE_PATH, {
-      recursive: true,
-      filter: (src) => {
-        const shouldExclude = src.includes('node_modules') ||
-                             src.includes('.git') ||
-                             src.endsWith('.map')
-        return !shouldExclude
-      }
-    })
-
-    console.log('✅ Theme copied!')
+    console.log('📦 Copying theme to Sparktype...');
+    const result = await copyThemeBundle(import.meta.url);
+    console.log(`✅ Theme copied to ${result.targetDir}`);
   } catch (error) {
-    console.error('❌ Error copying theme:', error.message)
+    console.error('❌ Error copying theme:', error.message);
   } finally {
-    copying = false
+    copying = false;
     if (pendingCopy) {
-      copyTheme()
+      triggerCopy();
     }
   }
 }
 
-// Start Vite in watch mode
-console.log('🚀 Starting Vite build watch...')
+console.log(`🚀 Starting Vite build watch in ${context.themeRoot}...`);
 const vite = spawn('npx', ['vite', 'build', '--watch'], {
-  cwd: rootDir,
+  cwd: context.themeRoot,
   stdio: 'pipe',
-  shell: true
-})
+  shell: true,
+});
 
-let buildCount = 0
 vite.stdout.on('data', (data) => {
-  const output = data.toString()
-  process.stdout.write(output)
+  const output = data.toString();
+  process.stdout.write(output);
 
-  // Only copy when build completes (not on start)
-  if (output.includes('built in') && buildCount > 0) {
-    copyTheme()
-  }
   if (output.includes('built in')) {
-    buildCount++
+    triggerCopy();
   }
-})
+});
 
 vite.stderr.on('data', (data) => {
-  process.stderr.write(data)
-})
+  process.stderr.write(data);
+});
 
 vite.on('error', (error) => {
-  console.error('Failed to start Vite:', error)
-  process.exit(1)
-})
+  console.error('Failed to start Vite:', error);
+  process.exit(1);
+});
 
-// Watch for changes in theme directory (excluding styles.css which Vite handles)
-console.log('👀 Watching for theme changes...')
-const watcher = chokidar.watch('theme/**/*', {
-  cwd: rootDir,
+console.log('👀 Watching source templates for non-CSS changes...');
+const watcher = chokidar.watch('src/**/*', {
+  cwd: context.themeRoot,
   ignored: ['**/node_modules/**', '**/.git/**', '**/*.map', '**/styles.css'],
   ignoreInitial: true,
   awaitWriteFinish: {
     stabilityThreshold: 100,
-    pollInterval: 50
-  }
-})
+    pollInterval: 50,
+  },
+});
 
 watcher
   .on('change', (filePath) => {
-    console.log(`\n🔄 Changed: ${filePath}`)
-    copyTheme()
+    console.log(`\n🔄 Changed: ${filePath}`);
+    triggerCopy();
   })
   .on('add', (filePath) => {
-    console.log(`\n➕ Added: ${filePath}`)
-    copyTheme()
+    console.log(`\n➕ Added: ${filePath}`);
+    triggerCopy();
+  })
+  .on('unlink', (filePath) => {
+    console.log(`\n➖ Removed: ${filePath}`);
+    triggerCopy();
   })
   .on('error', (error) => {
-    console.error('Watcher error:', error)
-  })
+    console.error('Watcher error:', error);
+  });
 
-// Handle cleanup
-process.on('SIGINT', () => {
-  console.log('\n\n👋 Stopping...')
-  vite.kill()
-  watcher.close()
-  process.exit(0)
-})
+process.on('SIGINT', async () => {
+  console.log('\n\n👋 Stopping...');
+  vite.kill();
+  await watcher.close();
+  process.exit(0);
+});
