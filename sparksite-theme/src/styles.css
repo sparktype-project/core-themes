@@ -7,30 +7,32 @@
   --color-background: #f8f9fa;
   --color-text: #212529;
   --color-headings: #000000;
+  --color-muted: #6b7280;
 
   /* Font families */
   --font-sans: Inter, system-ui, -apple-system, sans-serif;
   --font-serif: "Gentium Book Plus", Georgia, serif;
   --font-mono: "Geist Mono", "IBM Plex Mono", monospace;
-
-
-  
+  --font-headings: Inter, system-ui, -apple-system, sans-serif;
+  --font-body: "Gentium Book Plus", Georgia, serif;
 }
 
 html {
   font-size: 16px;
-  
-
 }
 
-
-
 @layer base {
+  :root {
+    --font-headings: Inter, system-ui, -apple-system, sans-serif;
+    --font-body: "Gentium Book Plus", Georgia, serif;
+  }
 
-body {
+  body {
+    background-color: var(--color-background);
     font-family: var(--font-body);
     color: var(--color-text);
   }
+
   .bg-primary {
     background-color: var(--color-primary);
   }
@@ -39,7 +41,9 @@ body {
     color: var(--color-primary);
   }
 
-  a:link {
+  a,
+  a:link,
+  a:visited {
     color: var(--color-primary);
   }
 
@@ -47,13 +51,33 @@ body {
     background-color: var(--color-background);
   }
 
-  .font-headings {
-      font-family: var(--font-headings);
+  .text-muted {
+    color: var(--color-muted);
   }
-  h1, h2, h3, h4 {
+
+  .font-headings {
+    font-family: var(--font-headings);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-headings);
     font-weight: bold;
     color: var(--color-headings);
   }
-  
+
+  .prose,
+  .prose-lg {
+    --tw-prose-body: var(--color-text);
+    --tw-prose-headings: var(--color-headings);
+    --tw-prose-lead: var(--color-text);
+    --tw-prose-links: var(--color-primary);
+    --tw-prose-bold: var(--color-headings);
+    --tw-prose-counters: var(--color-primary);
+    --tw-prose-bullets: var(--color-primary);
+    --tw-prose-quotes: var(--color-headings);
+    --tw-prose-quote-borders: var(--color-primary);
+    --tw-prose-captions: var(--color-muted);
+    --tw-prose-code: var(--color-headings);
+    --tw-prose-kbd: var(--color-headings);
+  }
 }
