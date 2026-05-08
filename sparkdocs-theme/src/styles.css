@@ -35,14 +35,36 @@
   --text-9xl--line-height: 1;
 
   /* Font families */
-  --font-display--font-feature-settings: 'ss01';
-  --font-mono: "Geist Mono", "IBM Plex Mono", monospace;
- --font-display: sans-serif;
+  --font-display: var(--font-family-inter);
+  --font-headings: var(--font-display);
+  --font-body: var(--font-family-gentium-book-plus);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-body);
+  --font-mono: var(--font-family-geist-mono);
   /* Container max-width */
   --container-8xl: 88rem;
 }
 
 :root {
+  --font-stack-system-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-stack-system-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-stack-system-mono: ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-family-system-sans: var(--font-stack-system-sans);
+  --font-family-system-serif: var(--font-stack-system-serif);
+  --font-family-inter: 'Inter', var(--font-stack-system-sans);
+  --font-family-geist: 'Geist', var(--font-stack-system-sans);
+  --font-family-geist-mono: 'Geist Mono', var(--font-stack-system-mono);
+  --font-family-special-gothic: 'Special Gothic', var(--font-stack-system-sans);
+  --font-family-ibm-plex-sans: 'IBM Plex Sans', var(--font-stack-system-sans);
+  --font-family-ibm-plex-serif: 'IBM Plex Serif', var(--font-stack-system-serif);
+  --font-family-ibm-plex-mono: 'IBM Plex Mono', var(--font-stack-system-mono);
+  --font-family-instrument-serif: 'Instrument Serif', var(--font-stack-system-serif);
+  --font-family-instrument-sans: 'Instrument Sans', var(--font-stack-system-sans);
+  --font-family-gentium-book-plus: 'Gentium Book Plus', var(--font-stack-system-serif);
+  --font-family-playfair-display: 'Playfair Display', var(--font-stack-system-serif);
+  --font-display: var(--font-family-inter);
+  --font-headings: var(--font-display);
+  --font-body: var(--font-family-gentium-book-plus);
   --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -125,14 +147,14 @@
   }
 
   body {
+    background-color: var(--background);
     font-family: var(--font-body);
     color: var(--foreground);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-feature-settings: var(--font-display--font-feature-settings);
-    font-weight: bold;
+    font-weight: 700;
   }
 }
 
